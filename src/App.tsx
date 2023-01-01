@@ -1,38 +1,49 @@
-import * as React from "react"
 import {
   ChakraProvider,
   Box,
-  Text,
-  Link,
   VStack,
-  Code,
   Grid,
   theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+  Center,
+  SimpleGrid,
+  GridItem,
+} from "@chakra-ui/react";
+import { ColorModeSwitcher } from "./ColorModeSwitcher";
+import { Logo } from "./Logo";
+import BasicUsage from "./components/modal";
+import Card from "./components/Card";
+import { useEffect, useState } from "react";
 
-export const App = () => (
-  <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
+export const App = () => {
+  const [users, setUsers] = useState<User[]>();
+  useEffect(() => {
+    fetch("/data/data.json")
+      .then((res) => res.json())
+      .then((_) => setUsers(_));
+  }, []);
+
+  return (
+    <ChakraProvider theme={theme}>
+      <Grid mt="20" templateColumns={"repeat(4, 1fr)"} gap="10">
+        {users?.map((user) => (
+          <GridItem key={user.id}>
+            <Card {...user} />
+          </GridItem>
+        ))}
       </Grid>
-    </Box>
-  </ChakraProvider>
-)
+    </ChakraProvider>
+  );
+};
+
+export type User = {
+  id: string;
+  image: string;
+  name: string;
+  test: [
+    {
+      examinerName: string;
+      mark: number;
+      duration: number;
+    }
+  ];
+};
