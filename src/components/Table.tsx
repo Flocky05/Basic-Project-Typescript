@@ -7,8 +7,8 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-
-const Table = () => {
+import { User } from "../App";
+const Table = ({ image, name, test }: User) => {
   return (
     <TableContainer>
       <ChakraTable variant="simple">
@@ -23,8 +23,8 @@ const Table = () => {
         <Tbody>
           <Tr>
             <Td isNumeric>8</Td>
-            <Td>inches</Td>
-            <Td>millimetres (mm)</Td>
+            <Td>Md.Rakibul Islam</Td>
+            <Td>65</Td>
             <Td>25.4</Td>
           </Tr>
         </Tbody>

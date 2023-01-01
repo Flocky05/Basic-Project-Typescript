@@ -21,7 +21,7 @@ export default function BasicUsage({
 
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
+      <Button onClick={onOpen}>Details</Button>
 
       <Modal
         blockScrollOnMount={false}
@@ -31,12 +31,10 @@ export default function BasicUsage({
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>Mock Test Mark</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text fontWeight="bold" mb="1rem">
-              You can scroll the content behind.
-            </Text>
+            <Text fontWeight="bold" mb="1rem"></Text>
             <Table />
           </ModalBody>
 
